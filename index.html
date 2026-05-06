@@ -2,449 +2,194 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Complete Solar System - Planets, Dwarf Planets & All Moons</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #030318 0%, #0a0a2a 50%, #1a1a3a 100%);
-            color: #fff;
-            padding: 20px;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #ffd700, #ffaa00);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .subtitle {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #aaa;
-            font-style: italic;
-        }
-
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-
-        .stat-card {
-            background: rgba(0,0,0,0.6);
-            padding: 12px 20px;
-            border-radius: 10px;
-            text-align: center;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,215,0,0.3);
-        }
-
-        .stat-number {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #ffd700;
-        }
-
-        .stat-label {
-            font-size: 0.8rem;
-            color: #ccc;
-        }
-
-        .search-container {
-            margin-bottom: 20px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        #searchInput {
-            flex: 1;
-            padding: 12px;
-            font-size: 1rem;
-            border: none;
-            border-radius: 8px;
-            background: rgba(255,255,255,0.15);
-            color: white;
-            outline: none;
-            transition: all 0.2s;
-        }
-
-        #searchInput::placeholder {
-            color: #999;
-        }
-
-        #searchInput:focus {
-            background: rgba(255,255,255,0.25);
-            box-shadow: 0 0 5px #ffd700;
-        }
-
-        button {
-            padding: 12px 20px;
-            font-size: 1rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            background: #ffd700;
-            color: #1a1a3a;
-            font-weight: bold;
-            transition: all 0.2s;
-        }
-
-        button:hover {
-            background: #ffaa00;
-            transform: scale(1.02);
-        }
-
-        .section {
-            background: rgba(10,10,40,0.6);
-            border-radius: 15px;
-            margin-bottom: 25px;
-            overflow: hidden;
-            backdrop-filter: blur(3px);
-            border: 1px solid rgba(255,215,0,0.2);
-        }
-
-        .section-header {
-            background: linear-gradient(90deg, #1a1a4a, #0a0a2a);
-            padding: 12px 20px;
-            cursor: pointer;
-            font-size: 1.5rem;
-            font-weight: bold;
-            border-left: 5px solid #ffd700;
-            user-select: none;
-        }
-
-        .section-header:hover {
-            background: linear-gradient(90deg, #2a2a5a, #1a1a4a);
-        }
-
-        .toggle-icon {
-            float: right;
-            font-size: 1.3rem;
-        }
-
-        .section-content {
-            display: block;
-            padding: 10px;
-        }
-
-        .moon-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .moon-table th, .moon-table td {
-            padding: 10px 12px;
-            text-align: left;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .moon-table th {
-            background: rgba(0,0,0,0.5);
-            color: #ffd700;
-            font-weight: bold;
-            position: sticky;
-            top: 0;
-        }
-
-        .moon-table tr:hover {
-            background: rgba(255,215,0,0.1);
-        }
-
-        .moon-table td:last-child, .moon-table th:last-child {
-            text-align: right;
-        }
-
-        .diameter-cell {
-            font-family: monospace;
-            font-weight: bold;
-        }
-
-        .planet-name {
-            color: #ffd700;
-        }
-
-        .no-results {
-            text-align: center;
-            padding: 40px;
-            color: #aaa;
-            font-size: 1.2rem;
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px 20px 20px;
-            color: #666;
-            font-size: 0.8rem;
-            border-top: 1px solid rgba(255,215,0,0.2);
-            margin-top: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .moon-table th, .moon-table td {
-                padding: 6px 8px;
-                font-size: 0.75rem;
-            }
-            .section-header {
-                font-size: 1.1rem;
-            }
-            h1 {
-                font-size: 1.6rem;
-            }
-            .stat-card {
-                padding: 6px 12px;
-            }
-            .stat-number {
-                font-size: 1.2rem;
-            }
-        }
-    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🌌 Complete Solar System Database 🌌</h1>
-        <div class="subtitle">All Planets • Dwarf Planets • All Moons (including smallest irregulars)</div>
 
-        <div class="stats" id="stats"></div>
+<h1>Complete Solar System Database</h1>
+<p>All Planets • Dwarf Planets • All Moons (including smallest irregulars)</p>
 
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="🔍 Search any moon, planet, or dwarf planet...">
-            <button onclick="clearSearch()">Clear</button>
-        </div>
+<hr>
 
-        <div id="allContent"></div>
-        <footer>
-            📊 Data source: NASA / IAU (2024) • All confirmed moons included • Diameters in kilometers (km)<br>
-            🔵 Irregular moons under 2km included where known • Dwarf planets from IAU recognition
-        </footer>
-    </div>
+<p><strong>Search:</strong> <input type="text" id="searchInput" placeholder="Type moon or planet name..." style="width: 300px;"> <button onclick="clearSearch()">Clear</button></p>
 
-    <script>
-        // Complete data structure: Planets (with moons), Dwarf Planets (with moons)
-        const solarSystemData = {
-            "Planets": {
-                "Mercury": { diameter: 4879, moons: [] },
-                "Venus": { diameter: 12104, moons: [] },
-                "Earth": { diameter: 12742, moons: [["Moon", 3474.8]] },
-                "Mars": { diameter: 6779, moons: [["Phobos", 22.5], ["Deimos", 12.6]] },
-                "Jupiter": { diameter: 139820, moons: [
-                    ["Ganymede", 5268], ["Callisto", 4821], ["Io", 3643], ["Europa", 3121],
-                    ["Amalthea", 250], ["Himalia", 170], ["Thebe", 116], ["Elara", 80],
-                    ["Metis", 60], ["Pasiphae", 58], ["Carme", 46], ["Lysithea", 36],
-                    ["Sinope", 35], ["Ananke", 28], ["Leda", 20], ["Callirrhoe", 9],
-                    ["Themisto", 8], ["Praxitheke", 7], ["Harpalyke", 4], ["Helike", 4],
-                    ["Hermippe", 4], ["Iocaste", 5], ["Isonoe", 4], ["Kalyke", 5],
-                    ["Megaclite", 5], ["Taygete", 5], ["Autonoe", 4], ["Chaldene", 4],
-                    ["Erinome", 3], ["Thyone", 4], ["Aitne", 3], ["Arche", 3], ["Cyllene", 2],
-                    ["Dia", 4], ["Euanthe", 3], ["Eurydome", 3], ["Hegemone", 3], ["Kale", 2],
-                    ["Kore", 2], ["Mneme", 2], ["Orthosie", 2], ["Pasithee", 2], ["Sponde", 2],
-                    ["Thelxinoe", 2], ["Carpo", 3], ["Euporie", 2], ["Eupheme", 2], ["Pandia", 3],
-                    ["Philophrosyne", 2], ["Valetudo", 1], ["Ersa", 3], ["S/2003 J2", 2],
-                    ["S/2003 J4", 2], ["S/2003 J9", 1], ["S/2003 J10", 2], ["S/2003 J12", 1],
-                    ["S/2003 J16", 2], ["S/2003 J18", 2], ["S/2003 J19", 2], ["S/2003 J23", 2],
-                    ["S/2010 J1", 2], ["S/2010 J2", 1], ["S/2011 J1", 2], ["S/2011 J2", 1],
-                    ["S/2016 J1", 1], ["S/2017 J1", 2], ["S/2018 J1", 1]
-                ] },
-                "Saturn": { diameter: 116460, moons: [
-                    ["Titan", 5150], ["Rhea", 1527], ["Iapetus", 1470], ["Dione", 1123],
-                    ["Tethys", 1062], ["Enceladus", 504], ["Mimas", 396], ["Hyperion", 270],
-                    ["Phoebe", 213], ["Janus", 203], ["Epimetheus", 130], ["Prometheus", 148],
-                    ["Pandora", 110], ["Helene", 43], ["Atlas", 41], ["Calypso", 30],
-                    ["Telesto", 29], ["Pan", 28], ["Siarnaq", 40], ["Paaliaq", 22],
-                    ["Ymir", 19], ["Kiviuq", 17], ["Tarvos", 15], ["Ijiraq", 12],
-                    ["Erriapus", 10], ["Skathi", 8], ["Albiorix", 32], ["Bebhionn", 6],
-                    ["Daphnis", 8], ["Greip", 6], ["Hyrrokkin", 8], ["Jarnsaxa", 6],
-                    ["Loge", 6], ["Mundilfari", 7], ["Narvi", 7], ["Skoll", 6],
-                    ["Surtur", 6], ["Thrymr", 7], ["Bestla", 7], ["Fornjot", 6],
-                    ["Methone", 3], ["Pallene", 5], ["Polydeuces", 3.5], ["Aegaeon", 0.66],
-                    ["Anthe", 2], ["Tarqeq", 7], ["Bergelmir", 6], ["Farbauti", 5],
-                    ["Fenrir", 4], ["Hati", 4], ["S/2004 S3", 3], ["S/2004 S6", 3],
-                    ["S/2004 S7", 6], ["S/2006 S1", 6], ["S/2006 S3", 6], ["S/2007 S2", 6],
-                    ["S/2007 S3", 5], ["S/2009 S1", 0.3], ["Aegir", 6], ["Angrboda", 6],
-                    ["Alvaldi", 4], ["Bathi", 6], ["Belinda", 8], ["Eggther", 6], ["Geirrod", 4],
-                    ["Gerd", 4], ["Gridr", 4], ["Gunnlod", 4], ["Harbard", 4], ["Hyrrokkin", 8],
-                    ["Hati", 4], ["Jarnsaxa", 6], ["Kari", 7], ["Laufey", 6], ["Njord", 6]
-                ] },
-                "Uranus": { diameter: 50724, moons: [
-                    ["Titania", 1578], ["Oberon", 1523], ["Umbriel", 1169], ["Ariel", 1162],
-                    ["Miranda", 472], ["Puck", 162], ["Sycorax", 157], ["Portia", 135],
-                    ["Juliet", 94], ["Belinda", 81], ["Cressida", 80], ["Rosalind", 72],
-                    ["Caliban", 72], ["Bianca", 51], ["Prospero", 50], ["Setebos", 48],
-                    ["Ophelia", 43], ["Cordelia", 40], ["Stephano", 32], ["Perdita", 30],
-                    ["Mab", 25], ["Francisco", 22], ["Ferdinand", 20], ["Margaret", 20],
-                    ["Trinculo", 18], ["Cupid", 18], ["Desdemona", 64], ["S/2023 U1", 12]
-                ] },
-                "Neptune": { diameter: 49244, moons: [
-                    ["Triton", 2707], ["Proteus", 440], ["Nereid", 357], ["Larissa", 218],
-                    ["Galatea", 204], ["Despina", 180], ["Thalassa", 108], ["Naiad", 96],
-                    ["Halimede", 62], ["Neso", 60], ["Sao", 44], ["Laomedeia", 40],
-                    ["Psamathe", 38], ["Hippocamp", 18], ["S/2021 N1", 4], ["S/2002 N5", 4]
-                ] }
-            },
-            "Dwarf Planets": {
-                "Pluto": { diameter: 2377, moons: [
-                    ["Charon", 1212], ["Styx", 16], ["Nix", 50], ["Kerberos", 19], ["Hydra", 51]
-                ] },
-                "Eris": { diameter: 2326, moons: [["Dysnomia", 700]] },
-                "Haumea": { diameter: 1632, moons: [["Hiʻiaka", 320], ["Namaka", 170]] },
-                "Makemake": { diameter: 1430, moons: [["S/2015 (136472) 1", 175]] },
-                "Ceres": { diameter: 939, moons: [] },
-                "Gonggong": { diameter: 1230, moons: [["Xiangliu", 200]] },
-                "Quaoar": { diameter: 1100, moons: [["Weywot", 170]] },
-                "Orcus": { diameter: 917, moons: [["Vanth", 440]] },
-                "Salacia": { diameter: 854, moons: [["Actaea", 300]] },
-                "Varda": { diameter: 792, moons: [["Ilmarë", 361]] },
-                "2002 MS4": { diameter: 800, moons: [] },
-                "Ixion": { diameter: 740, moons: [] },
-                "Varuna": { diameter: 668, moons: [] },
-                "Chaos": { diameter: 600, moons: [] },
-                "Huya": { diameter: 458, moons: [["S/2012 (38628) 1", 213]] },
-                "Lempo": { diameter: 400, moons: [["Hiisi", 200], ["Paha", 160]] }
-            }
-        };
+<hr>
 
-        // Calculate total moons count and update stats
-        function updateStats() {
-            let totalMoons = 0;
-            let dwarfMoons = 0;
-            let planetMoons = 0;
-            
-            for (let planet in solarSystemData.Planets) {
-                planetMoons += solarSystemData.Planets[planet].moons.length;
-            }
-            for (let dwarf in solarSystemData.DwarfPlanets) {
-                dwarfMoons += solarSystemData.DwarfPlanets[dwarf].moons.length;
-            }
-            totalMoons = planetMoons + dwarfMoons;
-            
-            document.getElementById("stats").innerHTML = `
-                <div class="stat-card"><div class="stat-number">8</div><div class="stat-label">Planets</div></div>
-                <div class="stat-card"><div class="stat-number">${planetMoons}</div><div class="stat-label">Planet Moons</div></div>
-                <div class="stat-card"><div class="stat-number">${Object.keys(solarSystemData.DwarfPlanets).length}</div><div class="stat-label">Dwarf Planets</div></div>
-                <div class="stat-card"><div class="stat-number">${dwarfMoons}</div><div class="stat-label">Dwarf Planet Moons</div></div>
-                <div class="stat-card"><div class="stat-number">${totalMoons}</div><div class="stat-label">Total Moons</div></div>
-            `;
+<div id="stats"></div>
+
+<hr>
+
+<div id="allContent"></div>
+
+<hr>
+<p>Data source: NASA / IAU (2024) • Diameters in kilometers (km)</p>
+
+<script>
+    // Complete data structure
+    const solarSystemData = {
+        "Planets": {
+            "Mercury": { diameter: 4879, moons: [] },
+            "Venus": { diameter: 12104, moons: [] },
+            "Earth": { diameter: 12742, moons: [["Moon", 3474.8]] },
+            "Mars": { diameter: 6779, moons: [["Phobos", 22.5], ["Deimos", 12.6]] },
+            "Jupiter": { diameter: 139820, moons: [
+                ["Ganymede", 5268], ["Callisto", 4821], ["Io", 3643], ["Europa", 3121],
+                ["Amalthea", 250], ["Himalia", 170], ["Thebe", 116], ["Elara", 80],
+                ["Metis", 60], ["Pasiphae", 58], ["Carme", 46], ["Lysithea", 36],
+                ["Sinope", 35], ["Ananke", 28], ["Leda", 20], ["Callirrhoe", 9],
+                ["Themisto", 8], ["Praxitheke", 7], ["Harpalyke", 4], ["Helike", 4],
+                ["Hermippe", 4], ["Iocaste", 5], ["Isonoe", 4], ["Kalyke", 5],
+                ["Megaclite", 5], ["Taygete", 5], ["Autonoe", 4], ["Chaldene", 4],
+                ["Erinome", 3], ["Thyone", 4], ["Aitne", 3], ["Arche", 3], ["Cyllene", 2],
+                ["Dia", 4], ["Euanthe", 3], ["Eurydome", 3], ["Hegemone", 3], ["Kale", 2],
+                ["Kore", 2], ["Mneme", 2], ["Orthosie", 2], ["Pasithee", 2], ["Sponde", 2],
+                ["Thelxinoe", 2], ["Carpo", 3], ["Euporie", 2], ["Eupheme", 2], ["Pandia", 3],
+                ["Philophrosyne", 2], ["Valetudo", 1], ["Ersa", 3], ["S/2003 J2", 2],
+                ["S/2003 J4", 2], ["S/2003 J9", 1], ["S/2003 J10", 2], ["S/2003 J12", 1],
+                ["S/2003 J16", 2], ["S/2003 J18", 2], ["S/2003 J19", 2], ["S/2003 J23", 2],
+                ["S/2010 J1", 2], ["S/2010 J2", 1], ["S/2011 J1", 2], ["S/2011 J2", 1],
+                ["S/2016 J1", 1], ["S/2017 J1", 2], ["S/2018 J1", 1]
+            ] },
+            "Saturn": { diameter: 116460, moons: [
+                ["Titan", 5150], ["Rhea", 1527], ["Iapetus", 1470], ["Dione", 1123],
+                ["Tethys", 1062], ["Enceladus", 504], ["Mimas", 396], ["Hyperion", 270],
+                ["Phoebe", 213], ["Janus", 203], ["Epimetheus", 130], ["Prometheus", 148],
+                ["Pandora", 110], ["Helene", 43], ["Atlas", 41], ["Calypso", 30],
+                ["Telesto", 29], ["Pan", 28], ["Siarnaq", 40], ["Paaliaq", 22],
+                ["Ymir", 19], ["Kiviuq", 17], ["Tarvos", 15], ["Ijiraq", 12],
+                ["Erriapus", 10], ["Skathi", 8], ["Albiorix", 32], ["Bebhionn", 6],
+                ["Daphnis", 8], ["Greip", 6], ["Hyrrokkin", 8], ["Jarnsaxa", 6],
+                ["Loge", 6], ["Mundilfari", 7], ["Narvi", 7], ["Skoll", 6],
+                ["Surtur", 6], ["Thrymr", 7], ["Bestla", 7], ["Fornjot", 6],
+                ["Methone", 3], ["Pallene", 5], ["Polydeuces", 3.5], ["Aegaeon", 0.66],
+                ["Anthe", 2], ["Tarqeq", 7], ["Bergelmir", 6], ["Farbauti", 5],
+                ["Fenrir", 4], ["Hati", 4], ["Aegir", 6], ["Angrboda", 6], ["Bathi", 6],
+                ["Eggther", 6], ["Geirrod", 4], ["Gerd", 4], ["Gridr", 4], ["Gunnlod", 4],
+                ["Harbard", 4], ["Kari", 7], ["Laufey", 6], ["Njord", 6]
+            ] },
+            "Uranus": { diameter: 50724, moons: [
+                ["Titania", 1578], ["Oberon", 1523], ["Umbriel", 1169], ["Ariel", 1162],
+                ["Miranda", 472], ["Puck", 162], ["Sycorax", 157], ["Portia", 135],
+                ["Juliet", 94], ["Belinda", 81], ["Cressida", 80], ["Rosalind", 72],
+                ["Caliban", 72], ["Bianca", 51], ["Prospero", 50], ["Setebos", 48],
+                ["Ophelia", 43], ["Cordelia", 40], ["Stephano", 32], ["Perdita", 30],
+                ["Mab", 25], ["Francisco", 22], ["Ferdinand", 20], ["Margaret", 20],
+                ["Trinculo", 18], ["Cupid", 18], ["Desdemona", 64]
+            ] },
+            "Neptune": { diameter: 49244, moons: [
+                ["Triton", 2707], ["Proteus", 440], ["Nereid", 357], ["Larissa", 218],
+                ["Galatea", 204], ["Despina", 180], ["Thalassa", 108], ["Naiad", 96],
+                ["Halimede", 62], ["Neso", 60], ["Sao", 44], ["Laomedeia", 40],
+                ["Psamathe", 38], ["Hippocamp", 18]
+            ] }
+        },
+        "Dwarf Planets": {
+            "Pluto": { diameter: 2377, moons: [["Charon", 1212], ["Styx", 16], ["Nix", 50], ["Kerberos", 19], ["Hydra", 51]] },
+            "Eris": { diameter: 2326, moons: [["Dysnomia", 700]] },
+            "Haumea": { diameter: 1632, moons: [["Hiʻiaka", 320], ["Namaka", 170]] },
+            "Makemake": { diameter: 1430, moons: [["S/2015 (136472) 1", 175]] },
+            "Ceres": { diameter: 939, moons: [] },
+            "Gonggong": { diameter: 1230, moons: [["Xiangliu", 200]] },
+            "Quaoar": { diameter: 1100, moons: [["Weywot", 170]] },
+            "Orcus": { diameter: 917, moons: [["Vanth", 440]] },
+            "Salacia": { diameter: 854, moons: [["Actaea", 300]] },
+            "Varda": { diameter: 792, moons: [["Ilmarë", 361]] }
         }
+    };
 
-        // Render all content
-        function renderContent(searchTerm = "") {
-            const container = document.getElementById("allContent");
-            container.innerHTML = "";
-            
-            // Render Planets section
-            const planetsDiv = document.createElement("div");
-            planetsDiv.className = "section";
-            planetsDiv.innerHTML = `<div class="section-header" onclick="toggleSection(this)">🪐 Planets & Their Moons <span class="toggle-icon">▼</span></div><div class="section-content">`;
-            
-            for (let [planetName, planetData] of Object.entries(solarSystemData.Planets)) {
-                const moons = planetData.moons;
-                const filteredMoons = searchTerm ? moons.filter(m => m[0].toLowerCase().includes(searchTerm)) : moons;
-                const planetMatch = planetName.toLowerCase().includes(searchTerm);
-                
-                if (!planetMatch && filteredMoons.length === 0 && searchTerm !== "") continue;
-                
-                const planetHtml = `
-                    <div class="planet-item" style="margin: 15px 0;">
-                        <div style="background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 8px; margin-bottom: 5px;">
-                            <strong style="font-size: 1.2rem; color: #ffd700;">🪐 ${planetName}</strong>
-                            <span style="float: right;">Diameter: ${planetData.diameter.toLocaleString()} km</span>
-                        </div>
-                        ${moons.length > 0 ? `
-                        <table class="moon-table">
-                            <thead>
-                                <tr><th>Moon Name</th><th>Diameter (km)</th></tr>
-                            </thead>
-                            <tbody>
-                                ${filteredMoons.map(moon => `<tr><td>${moon[0]}</td><td class="diameter-cell">${moon[1].toLocaleString()}</td></tr>`).join('')}
-                            </tbody>
-                        </table>
-                        ` : `<div style="padding: 8px 12px; color: #888;">No moons</div>`}
-                    </div>
-                `;
-                planetsDiv.querySelector(".section-content").innerHTML += planetHtml;
-            }
-            planetsDiv.innerHTML += `</div>`;
-            container.appendChild(planetsDiv);
-            
-            // Render Dwarf Planets section
-            const dwarvesDiv = document.createElement("div");
-            dwarvesDiv.className = "section";
-            dwarvesDiv.innerHTML = `<div class="section-header" onclick="toggleSection(this)">⭐ Dwarf Planets & Their Moons <span class="toggle-icon">▼</span></div><div class="section-content">`;
-            
-            for (let [dwarfName, dwarfData] of Object.entries(solarSystemData.DwarfPlanets)) {
-                const moons = dwarfData.moons;
-                const filteredMoons = searchTerm ? moons.filter(m => m[0].toLowerCase().includes(searchTerm)) : moons;
-                const dwarfMatch = dwarfName.toLowerCase().includes(searchTerm);
-                
-                if (!dwarfMatch && filteredMoons.length === 0 && searchTerm !== "") continue;
-                
-                const dwarfHtml = `
-                    <div class="planet-item" style="margin: 15px 0;">
-                        <div style="background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 8px; margin-bottom: 5px;">
-                            <strong style="font-size: 1.1rem; color: #ffaa66;">⭐ ${dwarfName}</strong>
-                            <span style="float: right;">Diameter: ${dwarfData.diameter.toLocaleString()} km</span>
-                        </div>
-                        ${moons.length > 0 ? `
-                        <table class="moon-table">
-                            <thead><tr><th>Moon Name</th><th>Diameter (km)</th></tr></thead>
-                            <tbody>${filteredMoons.map(moon => `<tr><td>${moon[0]}</td><td class="diameter-cell">${moon[1].toLocaleString()}</td></tr>`).join('')}</tbody>
-                        </table>
-                        ` : `<div style="padding: 8px 12px; color: #888;">No moons</div>`}
-                    </div>
-                `;
-                dwarvesDiv.querySelector(".section-content").innerHTML += dwarfHtml;
-            }
-            dwarvesDiv.innerHTML += `</div>`;
-            container.appendChild(dwarvesDiv);
-            
-            if (container.innerHTML === "") {
-                container.innerHTML = '<div class="no-results">🌙 No moons or planets match your search. Try "Titan" or "Jupiter" 🌍</div>';
-            }
+    function updateStats() {
+        let planetMoons = 0;
+        let dwarfMoons = 0;
+        
+        for (let planet in solarSystemData.Planets) {
+            planetMoons += solarSystemData.Planets[planet].moons.length;
+        }
+        for (let dwarf in solarSystemData.DwarfPlanets) {
+            dwarfMoons += solarSystemData.DwarfPlanets[dwarf].moons.length;
         }
         
-        function toggleSection(header) {
-            const content = header.nextElementSibling;
-            const icon = header.querySelector(".toggle-icon");
-            if (content.style.display === "none") {
-                content.style.display = "block";
-                icon.innerHTML = "▼";
+        document.getElementById("stats").innerHTML = `
+            <strong>Planets:</strong> 8 &nbsp;|&nbsp;
+            <strong>Planet Moons:</strong> ${planetMoons} &nbsp;|&nbsp;
+            <strong>Dwarf Planets:</strong> ${Object.keys(solarSystemData.DwarfPlanets).length} &nbsp;|&nbsp;
+            <strong>Dwarf Planet Moons:</strong> ${dwarfMoons} &nbsp;|&nbsp;
+            <strong>Total Moons:</strong> ${planetMoons + dwarfMoons}
+        `;
+    }
+
+    function renderContent(searchTerm = "") {
+        const container = document.getElementById("allContent");
+        container.innerHTML = "";
+        
+        // Planets
+        let html = "<h2>🪐 Planets & Their Moons</h2>";
+        for (let [planetName, planetData] of Object.entries(solarSystemData.Planets)) {
+            const moons = planetData.moons;
+            const filteredMoons = searchTerm ? moons.filter(m => m[0].toLowerCase().includes(searchTerm)) : moons;
+            const planetMatch = planetName.toLowerCase().includes(searchTerm);
+            
+            if (!planetMatch && filteredMoons.length === 0 && searchTerm !== "") continue;
+            
+            html += `<div style="margin-top: 20px; border: 1px solid #ccc; padding: 10px;">`;
+            html += `<strong>${planetName}</strong> (Diameter: ${planetData.diameter.toLocaleString()} km)<br>`;
+            
+            if (moons.length > 0) {
+                html += `<table border="1" cellpadding="5" cellspacing="0" style="margin-top: 10px; border-collapse: collapse;">`;
+                html += `<tr><th>Moon Name</th><th>Diameter (km)</th></tr>`;
+                for (let moon of filteredMoons) {
+                    html += `<tr><td>${moon[0]}</td><td>${moon[1].toLocaleString()}</td></tr>`;
+                }
+                html += `</table>`;
             } else {
-                content.style.display = "none";
-                icon.innerHTML = "▶";
+                html += `<i>No moons</i>`;
             }
+            html += `</div>`;
         }
         
-        function clearSearch() {
-            document.getElementById("searchInput").value = "";
-            renderContent("");
+        // Dwarf Planets
+        html += "<h2>⭐ Dwarf Planets & Their Moons</h2>";
+        for (let [dwarfName, dwarfData] of Object.entries(solarSystemData.DwarfPlanets)) {
+            const moons = dwarfData.moons;
+            const filteredMoons = searchTerm ? moons.filter(m => m[0].toLowerCase().includes(searchTerm)) : moons;
+            const dwarfMatch = dwarfName.toLowerCase().includes(searchTerm);
+            
+            if (!dwarfMatch && filteredMoons.length === 0 && searchTerm !== "") continue;
+            
+            html += `<div style="margin-top: 20px; border: 1px solid #ccc; padding: 10px;">`;
+            html += `<strong>${dwarfName}</strong> (Diameter: ${dwarfData.diameter.toLocaleString()} km)<br>`;
+            
+            if (moons.length > 0) {
+                html += `<table border="1" cellpadding="5" cellspacing="0" style="margin-top: 10px; border-collapse: collapse;">`;
+                html += `<tr><th>Moon Name</th><th>Diameter (km)</th></tr>`;
+                for (let moon of filteredMoons) {
+                    html += `<tr><td>${moon[0]}</td><td>${moon[1].toLocaleString()}</td></tr>`;
+                }
+                html += `</table>`;
+            } else {
+                html += `<i>No moons</i>`;
+            }
+            html += `</div>`;
         }
         
-        document.getElementById("searchInput").addEventListener("input", (e) => {
-            renderContent(e.target.value.toLowerCase());
-        });
+        if (html === "<h2>🪐 Planets & Their Moons</h2><h2>⭐ Dwarf Planets & Their Moons</h2>") {
+            html = "<p>No results found. Try searching for 'Titan', 'Jupiter', or 'Pluto'.</p>";
+        }
         
-        updateStats();
+        container.innerHTML = html;
+    }
+    
+    function clearSearch() {
+        document.getElementById("searchInput").value = "";
         renderContent("");
-    </script>
+    }
+    
+    document.getElementById("searchInput").addEventListener("input", (e) => {
+        renderContent(e.target.value.toLowerCase());
+    });
+    
+    updateStats();
+    renderContent("");
+</script>
+
 </body>
 </html>
