@@ -11,15 +11,18 @@
 
 <hr>
 
-<p><strong>Search:</strong> <input type="text" id="searchInput" placeholder="Type moon or planet name..." style="width: 300px;"> <button onclick="clearSearch()">Clear</button></p>
-
-<hr>
-
+<h2>📊 Summary</h2>
 <div id="stats"></div>
 
 <hr>
 
-<div id="allContent"></div>
+<h2>🪐 Planets & Their Moons</h2>
+<div id="planetsList"></div>
+
+<hr>
+
+<h2>⭐ Dwarf Planets & Their Moons</h2>
+<div id="dwarfList"></div>
 
 <hr>
 <p>Data source: NASA / IAU (2024) • Diameters in kilometers (km)</p>
@@ -37,7 +40,7 @@
                 ["Amalthea", 250], ["Himalia", 170], ["Thebe", 116], ["Elara", 80],
                 ["Metis", 60], ["Pasiphae", 58], ["Carme", 46], ["Lysithea", 36],
                 ["Sinope", 35], ["Ananke", 28], ["Leda", 20], ["Callirrhoe", 9],
-                ["Themisto", 8], ["Praxitheke", 7], ["Harpalyke", 4], ["Helike", 4],
+                ["Themisto", 8], ["Praxidike", 7], ["Harpalyke", 4], ["Helike", 4],
                 ["Hermippe", 4], ["Iocaste", 5], ["Isonoe", 4], ["Kalyke", 5],
                 ["Megaclite", 5], ["Taygete", 5], ["Autonoe", 4], ["Chaldene", 4],
                 ["Erinome", 3], ["Thyone", 4], ["Aitne", 3], ["Arche", 3], ["Cyllene", 2],
@@ -97,6 +100,7 @@
         }
     };
 
+    // Update summary stats
     function updateStats() {
         let planetMoons = 0;
         let dwarfMoons = 0;
@@ -117,78 +121,55 @@
         `;
     }
 
-    function renderContent(searchTerm = "") {
-        const container = document.getElementById("allContent");
-        container.innerHTML = "";
+    // Render planets as a simple list
+    function renderPlanets() {
+        let html = "";
         
-        // Planets
-        let html = "<h2>🪐 Planets & Their Moons</h2>";
         for (let [planetName, planetData] of Object.entries(solarSystemData.Planets)) {
-            const moons = planetData.moons;
-            const filteredMoons = searchTerm ? moons.filter(m => m[0].toLowerCase().includes(searchTerm)) : moons;
-            const planetMatch = planetName.toLowerCase().includes(searchTerm);
-            
-            if (!planetMatch && filteredMoons.length === 0 && searchTerm !== "") continue;
-            
             html += `<div style="margin-top: 20px; border: 1px solid #ccc; padding: 10px;">`;
-            html += `<strong>${planetName}</strong> (Diameter: ${planetData.diameter.toLocaleString()} km)<br>`;
+            html += `<strong>${planetName}</strong> (Planet diameter: ${planetData.diameter.toLocaleString()} km)<br>`;
             
-            if (moons.length > 0) {
-                html += `<table border="1" cellpadding="5" cellspacing="0" style="margin-top: 10px; border-collapse: collapse;">`;
-                html += `<tr><th>Moon Name</th><th>Diameter (km)</th></tr>`;
-                for (let moon of filteredMoons) {
-                    html += `<tr><td>${moon[0]}</td><td>${moon[1].toLocaleString()}</td></tr>`;
+            if (planetData.moons.length > 0) {
+                html += `<ul>`;
+                for (let moon of planetData.moons) {
+                    html += `<li><strong>${moon[0]}</strong> — ${moon[1].toLocaleString()} km</li>`;
                 }
-                html += `</table>`;
+                html += `</ul>`;
             } else {
                 html += `<i>No moons</i>`;
             }
             html += `</div>`;
         }
         
-        // Dwarf Planets
-        html += "<h2>⭐ Dwarf Planets & Their Moons</h2>";
+        document.getElementById("planetsList").innerHTML = html;
+    }
+
+    // Render dwarf planets as a simple list
+    function renderDwarves() {
+        let html = "";
+        
         for (let [dwarfName, dwarfData] of Object.entries(solarSystemData.DwarfPlanets)) {
-            const moons = dwarfData.moons;
-            const filteredMoons = searchTerm ? moons.filter(m => m[0].toLowerCase().includes(searchTerm)) : moons;
-            const dwarfMatch = dwarfName.toLowerCase().includes(searchTerm);
-            
-            if (!dwarfMatch && filteredMoons.length === 0 && searchTerm !== "") continue;
-            
             html += `<div style="margin-top: 20px; border: 1px solid #ccc; padding: 10px;">`;
-            html += `<strong>${dwarfName}</strong> (Diameter: ${dwarfData.diameter.toLocaleString()} km)<br>`;
+            html += `<strong>${dwarfName}</strong> (Dwarf planet diameter: ${dwarfData.diameter.toLocaleString()} km)<br>`;
             
-            if (moons.length > 0) {
-                html += `<table border="1" cellpadding="5" cellspacing="0" style="margin-top: 10px; border-collapse: collapse;">`;
-                html += `<tr><th>Moon Name</th><th>Diameter (km)</th></tr>`;
-                for (let moon of filteredMoons) {
-                    html += `<tr><td>${moon[0]}</td><td>${moon[1].toLocaleString()}</td></tr>`;
+            if (dwarfData.moons.length > 0) {
+                html += `<ul>`;
+                for (let moon of dwarfData.moons) {
+                    html += `<li><strong>${moon[0]}</strong> — ${moon[1].toLocaleString()} km</li>`;
                 }
-                html += `</table>`;
+                html += `</ul>`;
             } else {
                 html += `<i>No moons</i>`;
             }
             html += `</div>`;
         }
         
-        if (html === "<h2>🪐 Planets & Their Moons</h2><h2>⭐ Dwarf Planets & Their Moons</h2>") {
-            html = "<p>No results found. Try searching for 'Titan', 'Jupiter', or 'Pluto'.</p>";
-        }
-        
-        container.innerHTML = html;
+        document.getElementById("dwarfList").innerHTML = html;
     }
-    
-    function clearSearch() {
-        document.getElementById("searchInput").value = "";
-        renderContent("");
-    }
-    
-    document.getElementById("searchInput").addEventListener("input", (e) => {
-        renderContent(e.target.value.toLowerCase());
-    });
     
     updateStats();
-    renderContent("");
+    renderPlanets();
+    renderDwarves();
 </script>
 
 </body>
